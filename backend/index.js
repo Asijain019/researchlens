@@ -11,6 +11,8 @@ app.get("/", (req, res) => {
 });
 
 // Search research papers
+const xml2js = require("xml2js");
+
 app.get("/search", async (req, res) => {
   const query = req.query.q;
 
@@ -22,11 +24,27 @@ app.get("/search", async (req, res) => {
 
   try {
     const response = await axios.get(url);
-    res.send(response.data);
+
+    const parser = new xml2js.Parser();
+    const result = await parser.parseStringPromise(response.data);
+
+    const entries = result.feed.entry || [];
+
+    const papers = entries.map(entry => ({
+      title: entry.title?.[0]?.trim(),
+      authors: entry.author?.map(a => a.name[0]),
+      summary: entry.summary?.[0]?.trim(),
+      link: entry.id?.[0]
+    }));
+
+    res.json(papers);
+
   } catch (error) {
+    console.error(error);
     res.status(500).send("Error fetching research papers");
   }
 });
+
 
 // Start server
 app.listen(5000, () => {

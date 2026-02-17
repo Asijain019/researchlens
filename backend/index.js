@@ -33,7 +33,7 @@ app.get("/search", async (req, res) => {
     const papers = entries.map(entry => ({
       title: entry.title?.[0]?.trim(),
       authors: entry.author?.map(a => a.name[0]),
-      summary: entry.summary?.[0]?.trim(),
+      summary: entry.summary?.[0]?.replace(/\s+/g, " ").trim(),
       link: entry.id?.[0]
     }));
 

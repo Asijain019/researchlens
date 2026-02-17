@@ -11,8 +11,7 @@ body {
     background: linear-gradient(135deg, #0f172a, #1e293b);
     color: white;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    transition: background 0.4s ease, color 0.4s ease;
 }
 
 /* ================= NAVBAR ================= */
@@ -24,7 +23,7 @@ body {
     padding: 20px 60px;
     background: rgba(255, 255, 255, 0.05);
 
-    /* Safari prefix first */
+    /* Safari Support */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 
@@ -49,29 +48,54 @@ body {
 
 .nav-links a:hover {
     color: #38bdf8;
-    transform: scale(1.1);
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.theme-btn:hover {
+    transform: rotate(20deg);
 }
 
 /* ================= HERO SECTION ================= */
 
 .hero {
+    position: relative;
+    height: 85vh;
+    background: url("https://images.unsplash.com/photo-1531482615713-2afd69097998")
+        no-repeat center center/cover;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    margin-top: 120px;
+    align-items: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.75);
+}
+
+.hero-content {
+    position: relative;
     text-align: center;
     padding: 0 20px;
 }
 
 .hero h1 {
-    font-size: 42px;
+    font-size: 48px;
     font-weight: 700;
 }
 
 .hero p {
-    margin-top: 12px;
-    font-weight: 300;
+    margin-top: 15px;
+    font-size: 18px;
     opacity: 0.9;
 }
 
@@ -80,12 +104,12 @@ body {
 .search-container {
     margin-top: 30px;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .search-container input {
-    width: 400px;
+    width: 350px;
     max-width: 90%;
     padding: 14px;
     border-radius: 8px 0 0 8px;
@@ -95,27 +119,83 @@ body {
 }
 
 .search-container button {
-    padding: 14px 22px;
+    padding: 14px 20px;
     border: none;
-    background: #38bdf8;
-    color: black;
-    font-weight: 600;
     border-radius: 0 8px 8px 0;
+    background: linear-gradient(45deg, #38bdf8, #6366f1);
+    color: white;
+    font-weight: 600;
     cursor: pointer;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.7);
     transition: all 0.3s ease;
 }
 
 .search-container button:hover {
-    background: #0ea5e9;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 25px rgba(99, 102, 241, 1);
+    transform: translateY(-2px);
 }
 
 .search-container button:active {
     transform: scale(0.95);
 }
 
-/* ================= RESULTS GRID ================= */
+/* ================= FEATURES ================= */
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 80px 10%;
+    gap: 30px;
+    text-align: center;
+}
+
+.feature {
+    width: 280px;
+    padding: 30px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.08);
+
+    /* Safari Support */
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+
+    transition: all 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-8px);
+    background: rgba(56, 189, 248, 0.15);
+}
+
+.feature i {
+    font-size: 35px;
+    color: #38bdf8;
+    margin-bottom: 15px;
+}
+
+/* ================= STATS ================= */
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 10%;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stat h2 {
+    font-size: 40px;
+    color: #38bdf8;
+}
+
+.stat p {
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* ================= RESULTS ================= */
 
 .results {
     margin: 80px auto;
@@ -128,69 +208,85 @@ body {
 /* ================= PAPER CARD ================= */
 
 .paper-card {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
     padding: 25px;
     border-radius: 15px;
 
-    /* Safari prefix first */
+    /* Safari Support */
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
 
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .paper-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
 }
 
 .paper-card h3 {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     color: #38bdf8;
 }
 
 .paper-card p {
-    margin-bottom: 8px;
     font-size: 14px;
-    opacity: 0.9;
+    margin-bottom: 8px;
 }
 
 .abstract-preview {
-    font-size: 13px;
-    margin-top: 8px;
-    opacity: 0.8;
+    opacity: 0.85;
 }
-
-/* ================= BUTTON ================= */
 
 .view-btn {
     margin-top: 15px;
-    padding: 10px 15px;
+    padding: 10px;
     border: none;
+    border-radius: 6px;
     background: white;
     color: black;
-    border-radius: 6px;
     cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
 }
 
 .view-btn:hover {
     background: #38bdf8;
-    transform: scale(1.05);
+    color: white;
 }
 
-.view-btn:active {
-    transform: scale(0.95);
+/* ================= LOADER ================= */
+
+.loader {
+    margin: 20px auto;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top: 4px solid #38bdf8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* ================= FOOTER ================= */
 
 .footer {
-    margin-top: auto;
     text-align: center;
     padding: 20px;
     background: rgba(255, 255, 255, 0.05);
@@ -198,21 +294,30 @@ body {
     opacity: 0.8;
 }
 
-/* ================= ANIMATIONS ================= */
+/* ================= LIGHT MODE ================= */
 
-.fade-in {
-    opacity: 0;
-    animation: fadeIn 1s ease forwards;
+.light-mode {
+    background: #f8fafc;
+    color: #111;
 }
 
-.delay {
-    animation-delay: 0.6s;
+.light-mode .navbar,
+.light-mode .footer {
+    background: rgba(0, 0, 0, 0.05);
 }
 
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+.light-mode .feature,
+.light-mode .paper-card {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .nav-links a {
+    color: #111;
+}
+
+.light-mode .view-btn {
+    background: #111;
+    color: white;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -222,10 +327,11 @@ body {
     .navbar {
         flex-direction: column;
         gap: 10px;
+        padding: 20px;
     }
 
     .hero h1 {
-        font-size: 28px;
+        font-size: 30px;
     }
 
     .search-container {
@@ -239,5 +345,11 @@ body {
 
     .search-container button {
         border-radius: 8px;
+    }
+
+    .features,
+    .stats {
+        flex-direction: column;
+        align-items: center;
     }
 }

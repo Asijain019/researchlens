@@ -20,7 +20,9 @@ app.get("/search", async (req, res) => {
     return res.status(400).send("Query is required");
   }
 
-  const url = `http://export.arxiv.org/api/query?search_query=all:${query}&start=0&max_results=5`;
+  const limit = req.query.limit || 5;
+const url = `http://export.arxiv.org/api/query?search_query=all:${query}&start=0&max_results=${limit}`;
+
 
   try {
     const response = await axios.get(url);

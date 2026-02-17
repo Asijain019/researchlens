@@ -32,12 +32,26 @@ const url = `http://export.arxiv.org/api/query?search_query=all:${query}&start=0
 
     const entries = result.feed.entry || [];
 
-    const papers = entries.map(entry => ({
-      title: entry.title?.[0]?.trim(),
-      authors: entry.author?.map(a => a.name[0]),
-      summary: entry.summary?.[0]?.replace(/\s+/g, " ").trim(),
-      link: entry.id?.[0]
-    }));
+    const papers = entries.map(entry => {
+  const rawSummary = entry.summary?.[0]?.replace(/\s+/g, " ").trim() || "";
+
+  const sentences = rawSummary.split(". ");
+
+  const structuredSummary = {
+    Problem: sentences.slice(0, 1).join(". ") + ".",
+    Methodology: sentences.slice(1, 3).join(". ") + ".",
+    KeyContribution: sentences.slice(3, 5).join(". ") + ".",
+    Limitations: "Detailed limitations require full paper analysis."
+  };
+
+  return {
+    title: entry.title?.[0]?.trim(),
+    authors: entry.author?.map(a => a.name[0]),
+    link: entry.id?.[0],
+    structuredSummary
+  };
+});
+
 
     res.json(papers);
 

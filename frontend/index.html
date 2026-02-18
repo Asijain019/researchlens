@@ -1,158 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ResearchLens</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <!-- ================= NAVBAR ================= -->
-    <nav class="navbar">
-        <div class="logo">ResearchLens</div>
+<header>
+    <div class="logo">📘 ResearchLens</div>
 
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Explore</a>
-            <a href="#">Documentation</a>
-        </div>
-
-        <!-- Accessible Theme Toggle -->
-        <button id="themeToggle"
-                class="theme-btn"
-                aria-label="Toggle dark mode">
-            <i class="fas fa-moon"></i>
-        </button>
+    <nav>
+        <button class="nav-btn active" onclick="switchTab('explore')">Explore</button>
+        <button class="nav-btn" onclick="switchTab('library')">My Readings</button>
+        <button class="nav-btn" onclick="switchTab('history')">History</button>
+        <button class="nav-btn" onclick="toggleTheme()">🌙</button>
     </nav>
+</header>
 
+<main>
 
-    <!-- ================= HERO SECTION ================= -->
-    <section class="hero">
-        <div class="hero-overlay"></div>
+    <!-- EXPLORE SECTION -->
+    <section id="explore" class="section active">
+        <div class="hero">
+            <h1>Discover Knowledge <span>Without Limits</span></h1>
+            <p>Search millions of research papers and get structured AI summaries.</p>
 
-        <div class="hero-content">
-            <h1>Smarter Literature Reviews</h1>
-            <p>AI-powered structured summaries for researchers</p>
-
-            <div class="search-container">
-                <input type="text"
-                       id="searchInput"
-                       placeholder="Enter research topic..."
-                       aria-label="Search research topic">
-                <button id="searchBtn">Search</button>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search papers, topics, authors..." />
+                <button onclick="searchPapers()">Search</button>
             </div>
-
-            <!-- Loader -->
-            <div id="loader"
-                 class="loader hidden"
-                 aria-label="Loading results"></div>
         </div>
+
+        <div id="results" class="results-grid"></div>
     </section>
 
 
-    <!-- ================= FEATURES ================= -->
-    <section class="features">
-        <div class="feature">
-            <i class="fas fa-brain"></i>
-            <h3>AI Structured Summary</h3>
-            <p>
-                Research-focused summaries including problem statement,
-                methodology, contributions, results, and limitations.
-            </p>
-        </div>
-
-        <div class="feature">
-            <i class="fas fa-search"></i>
-            <h3>Smart Paper Discovery</h3>
-            <p>
-                Integrated academic APIs for fast, reliable, and
-                relevant research paper retrieval.
-            </p>
-        </div>
-
-        <div class="feature">
-            <i class="fas fa-chart-line"></i>
-            <h3>Boost Research Efficiency</h3>
-            <p>
-                Reduce literature review time using intelligent
-                AI-powered analysis.
-            </p>
-        </div>
+    <!-- LIBRARY SECTION -->
+    <section id="library" class="section">
+        <h2>📚 My Saved Papers</h2>
+        <div id="libraryContainer" class="results-grid"></div>
     </section>
 
 
-    <!-- ================= STATS ================= -->
-    <section class="stats">
-        <div class="stat">
-            <h2 class="counter" data-target="5000">0</h2>
-            <p>Papers Indexed</p>
-        </div>
-
-        <div class="stat">
-            <h2 class="counter" data-target="1200">0</h2>
-            <p>Researchers Served</p>
-        </div>
-
-        <div class="stat">
-            <h2 class="counter" data-target="98">0</h2>
-            <p>% Summary Accuracy</p>
-        </div>
+    <!-- HISTORY SECTION -->
+    <section id="history" class="section">
+        <h2>🕒 Search History</h2>
+        <ul id="historyList"></ul>
     </section>
 
+</main>
 
-    <!-- ================= RESULTS ================= -->
-    <section class="results">
+<footer>
+    <p>© 2026 ResearchLens | Intelligent Literature Review Platform</p>
+</footer>
 
-        <div class="paper-card">
-            <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0"
-                 class="card-img"
-                 alt="Artificial Intelligence research in healthcare">
-
-            <h3>Artificial Intelligence in Healthcare</h3>
-            <p><strong>Authors:</strong> John Smith et al.</p>
-            <p><strong>Year:</strong> 2024</p>
-            <p class="abstract-preview">
-                This paper explores the integration of AI techniques
-                into modern healthcare systems...
-            </p>
-
-            <button class="view-btn">View Structured Summary</button>
-        </div>
-
-
-        <div class="paper-card">
-            <img src="https://images.unsplash.com/photo-1508780709619-79562169bc64"
-                 class="card-img"
-                 alt="Deep learning model used for climate prediction">
-
-            <h3>Deep Learning for Climate Prediction</h3>
-            <p><strong>Authors:</strong> A. Kumar et al.</p>
-            <p><strong>Year:</strong> 2023</p>
-            <p class="abstract-preview">
-                A transformer-based model designed to improve
-                climate forecasting accuracy...
-            </p>
-
-            <button class="view-btn">View Structured Summary</button>
-        </div>
-
-    </section>
-
-
-    <!-- ================= FOOTER ================= -->
-    <footer class="footer">
-        <p>© 2026 ResearchLens </p>
-    </footer>
-
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

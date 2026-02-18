@@ -2,157 +2,176 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ResearchLens</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- ================= NAVBAR ================= -->
-    <nav class="navbar">
-        <div class="logo">ResearchLens</div>
+<header>
+    <div class="logo">
+        <i data-lucide="book-open"></i>
+        <span>ResearchLens</span>
+    </div>
 
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Explore</a>
-            <a href="#">Documentation</a>
-        </div>
+    <nav>
+        <button onclick="switchTab('explore')" class="nav-btn active">
+            Explore
+        </button>
 
-        <!-- Accessible Theme Toggle -->
-        <button id="themeToggle"
-                class="theme-btn"
-                aria-label="Toggle dark mode">
-            <i class="fas fa-moon"></i>
+        <button onclick="switchTab('library')" class="nav-btn">
+            My Readings
+        </button>
+
+        <button onclick="switchTab('history')" class="nav-btn">
+            History
+        </button>
+
+        <button 
+            onclick="toggleTheme()" 
+            class="nav-btn"
+            aria-label="Toggle dark mode"
+            title="Toggle dark mode">
+            <i data-lucide="moon"></i>
         </button>
     </nav>
+</header>
 
 
-    <!-- ================= HERO SECTION ================= -->
-    <section class="hero">
-        <div class="hero-overlay"></div>
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>
+            Discover Knowledge 
+            <span>Without Limits</span>
+        </h1>
 
-        <div class="hero-content">
-            <h1>Smarter Literature Reviews</h1>
-            <p>AI-powered structured summaries for researchers</p>
+        <p>
+            Accelerating scientific discovery through AI-powered research tools.
+        </p>
 
-            <div class="search-container">
-                <input type="text"
-                       id="searchInput"
-                       placeholder="Enter research topic..."
-                       aria-label="Search research topic">
-                <button id="searchBtn">Search</button>
-            </div>
-
-            <!-- Loader -->
-            <div id="loader"
-                 class="loader hidden"
-                 aria-label="Loading results"></div>
+        <div class="search-box">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Search research papers, authors, topics..."
+                aria-label="Search research papers"
+            >
+            <button onclick="searchPapers()">
+                Search
+            </button>
         </div>
-    </section>
+    </div>
+</section>
 
 
-    <!-- ================= FEATURES ================= -->
-    <section class="features">
-        <div class="feature">
-            <i class="fas fa-brain"></i>
-            <h3>AI Structured Summary</h3>
-            <p>
-                Research-focused summaries including problem statement,
-                methodology, contributions, results, and limitations.
-            </p>
-        </div>
+<!-- FEATURES SECTION -->
+<section class="features">
+    <div class="feature-card">
+        <i data-lucide="search"></i>
+        <h3>Deep Research</h3>
+        <p>Access millions of academic papers instantly.</p>
+    </div>
 
-        <div class="feature">
-            <i class="fas fa-search"></i>
-            <h3>Smart Paper Discovery</h3>
-            <p>
-                Integrated academic APIs for fast, reliable, and
-                relevant research paper retrieval.
-            </p>
-        </div>
+    <div class="feature-card">
+        <i data-lucide="sparkles"></i>
+        <h3>AI Summaries</h3>
+        <p>Structured summaries focused on research insights.</p>
+    </div>
 
-        <div class="feature">
-            <i class="fas fa-chart-line"></i>
-            <h3>Boost Research Efficiency</h3>
-            <p>
-                Reduce literature review time using intelligent
-                AI-powered analysis.
-            </p>
-        </div>
-    </section>
+    <div class="feature-card">
+        <i data-lucide="library"></i>
+        <h3>Smart Library</h3>
+        <p>Save and organize your research seamlessly.</p>
+    </div>
+</section>
 
 
-    <!-- ================= STATS ================= -->
-    <section class="stats">
-        <div class="stat">
-            <h2 class="counter" data-target="5000">0</h2>
-            <p>Papers Indexed</p>
-        </div>
-
-        <div class="stat">
-            <h2 class="counter" data-target="1200">0</h2>
-            <p>Researchers Served</p>
-        </div>
-
-        <div class="stat">
-            <h2 class="counter" data-target="98">0</h2>
-            <p>% Summary Accuracy</p>
-        </div>
-    </section>
+<!-- RESULTS SECTION -->
+<section id="explore" class="section active">
+    <div id="results" class="results-grid"></div>
+</section>
 
 
-    <!-- ================= RESULTS ================= -->
-    <section class="results">
-
-        <div class="paper-card">
-            <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0"
-                 class="card-img"
-                 alt="Artificial Intelligence research in healthcare">
-
-            <h3>Artificial Intelligence in Healthcare</h3>
-            <p><strong>Authors:</strong> John Smith et al.</p>
-            <p><strong>Year:</strong> 2024</p>
-            <p class="abstract-preview">
-                This paper explores the integration of AI techniques
-                into modern healthcare systems...
-            </p>
-
-            <button class="view-btn">View Structured Summary</button>
-        </div>
+<!-- MY LIBRARY SECTION -->
+<section id="library" class="section">
+    <h2>📚 My Saved Papers</h2>
+    <div id="libraryContainer" class="results-grid"></div>
+</section>
 
 
-        <div class="paper-card">
-            <img src="https://images.unsplash.com/photo-1508780709619-79562169bc64"
-                 class="card-img"
-                 alt="Deep learning model used for climate prediction">
-
-            <h3>Deep Learning for Climate Prediction</h3>
-            <p><strong>Authors:</strong> A. Kumar et al.</p>
-            <p><strong>Year:</strong> 2023</p>
-            <p class="abstract-preview">
-                A transformer-based model designed to improve
-                climate forecasting accuracy...
-            </p>
-
-            <button class="view-btn">View Structured Summary</button>
-        </div>
-
-    </section>
+<!-- HISTORY SECTION -->
+<section id="history" class="section">
+    <h2>🕒 Search History</h2>
+    <ul id="historyList"></ul>
+</section>
 
 
-    <!-- ================= FOOTER ================= -->
-    <footer class="footer">
-        <p>© 2026 ResearchLens | Built by ASI 🚀</p>
-    </footer>
+<!-- MOTIVATIONAL QUOTE -->
+<section class="quote-section">
+    <h2>
+        “Research is to see what everybody else has seen,  
+        and to think what nobody else has thought.”
+    </h2>
+    <p>– Albert Szent-Györgyi</p>
+</section>
 
 
-    <script src="script.js"></script>
+<!-- FEATURE BOXES -->
+<section class="boxes">
+    <div class="box">
+        <h4>Fast Search</h4>
+        <p>Lightning-speed API powered results.</p>
+    </div>
+
+    <div class="box">
+        <h4>Structured Insights</h4>
+        <p>Problem, Methodology, Results, and Limitations breakdown.</p>
+    </div>
+
+    <div class="box">
+        <h4>Research Focused</h4>
+        <p>Built specifically for researchers and innovators.</p>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-left">
+        <h3>ResearchLens</h3>
+        <p>Built for innovators. Designed for thinkers.</p>
+    </div>
+
+    <div class="footer-right">
+        <a href="https://github.com/vedikaagrawal464" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           aria-label="GitHub Profile"
+           title="GitHub">
+            <i data-lucide="github"></i>
+        </a>
+
+        <a href="https://linkedin.com" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           aria-label="LinkedIn Profile"
+           title="LinkedIn">
+            <i data-lucide="linkedin"></i>
+        </a>
+    </div>
+</footer>
+
+
+<script src="script.js"></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
 </body>
 </html>

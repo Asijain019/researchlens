@@ -1,4 +1,4 @@
-/* ================= GLOBAL RESET ================= */
+/* ================= GLOBAL ================= */
 
 * {
     margin: 0;
@@ -8,261 +8,270 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-    color: white;
-    min-height: 100vh;
-    transition: all 0.4s ease;
+    background: #f5f7ff;
+    color: #111827;
+    transition: 0.3s ease;
 }
 
-/* ================= NAVBAR ================= */
+/* ================= DARK MODE ================= */
 
-.navbar {
+body.dark {
+    background: #0f172a;
+    color: white;
+}
+
+body.dark header {
+    background: #1e293b;
+}
+
+body.dark .feature-card,
+body.dark .paper-card {
+    background: #1e293b;
+    color: white;
+}
+
+body.dark .box {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+}
+
+/* ================= HEADER ================= */
+
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 60px;
-    background: rgba(255, 255, 255, 0.05);
-
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-
+    background: white;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 20px;
 }
 
-.nav-links a {
-    margin-left: 25px;
-    text-decoration: none;
-    color: white;
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 500;
     transition: 0.3s;
 }
 
-.nav-links a:hover {
-    color: #38bdf8;
-}
-
-.theme-btn {
-    background: none;
-    border: none;
+.nav-btn:hover,
+.nav-btn.active {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
     color: white;
-    font-size: 18px;
-    cursor: pointer;
 }
 
 /* ================= HERO ================= */
 
 .hero {
-    position: relative;
-    height: 85vh;
-    background: url("https://images.unsplash.com/photo-1531482615713-2afd69097998")
-        no-repeat center/cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.75);
-    transition: 0.4s;
-}
-
-.hero-content {
-    position: relative;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
     text-align: center;
+    padding: 100px 20px;
 }
 
 .hero h1 {
     font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.hero span {
+    color: #ffe600;
 }
 
 .hero p {
-    margin-top: 15px;
+    font-size: 18px;
     opacity: 0.9;
 }
 
-/* ================= SEARCH ================= */
-
-.search-container {
+.search-box {
     margin-top: 30px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.search-container input {
-    width: 350px;
+.search-box input {
     padding: 14px;
-    border-radius: 8px 0 0 8px;
+    width: 400px;
+    border-radius: 12px;
     border: none;
     outline: none;
 }
 
-.search-container button {
+.search-box button {
     padding: 14px 20px;
+    border-radius: 12px;
     border: none;
-    border-radius: 0 8px 8px 0;
-    background: linear-gradient(45deg, #38bdf8, #6366f1);
-    color: white;
     cursor: pointer;
+    background: white;
+    color: #6366f1;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    transform: scale(1.05);
 }
 
 /* ================= FEATURES ================= */
 
 .features {
     display: flex;
-    justify-content: space-around;
-    padding: 80px 10%;
-    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
+    padding: 60px;
+    flex-wrap: wrap;
 }
 
-.feature {
-    width: 280px;
+.feature-card {
+    background: white;
     padding: 30px;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, 0.08);
-
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-
-    transition: 0.3s;
-}
-
-.feature:hover {
-    transform: translateY(-8px);
-}
-
-.feature i {
-    font-size: 35px;
-    color: #38bdf8;
-    margin-bottom: 15px;
-}
-
-/* ================= STATS ================= */
-
-.stats {
-    display: flex;
-    justify-content: space-around;
-    padding: 60px 10%;
+    border-radius: 20px;
+    width: 250px;
     text-align: center;
-    flex-wrap: wrap;
+    transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.stat h2 {
-    font-size: 40px;
-    color: #38bdf8;
+.feature-card:hover {
+    transform: translateY(-10px);
 }
 
-/* ================= RESULTS ================= */
+.feature-card i {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+    color: #6366f1;
+}
 
-.results {
-    margin: 80px auto;
-    width: 85%;
+/* ================= SECTIONS ================= */
+
+.section {
+    display: none;
+    padding: 40px 60px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.section.active {
+    display: block;
+}
+
+/* ================= PAPER CARDS ================= */
+
+.results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+    gap: 20px;
 }
 
 .paper-card {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 25px;
-    border-radius: 15px;
-
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     transition: 0.3s;
 }
 
 .paper-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
 }
 
-.card-img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 12px;
+.paper-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.paper-card p {
+    font-size: 14px;
     margin-bottom: 15px;
 }
 
-.view-btn {
-    margin-top: 15px;
-    padding: 10px;
+.paper-card button {
+    padding: 8px 12px;
+    border-radius: 8px;
     border: none;
-    border-radius: 6px;
-    background: white;
+    background: #6366f1;
+    color: white;
     cursor: pointer;
 }
 
-/* ================= LOADER ================= */
+/* ================= QUOTE ================= */
 
-.loader {
-    margin: 20px auto;
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(255,255,255,0.2);
-    border-top: 4px solid #38bdf8;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+.quote-section {
+    text-align: center;
+    padding: 80px 20px;
+    background: #eef2ff;
 }
 
-.hidden {
-    display: none;
+.quote-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-@keyframes spin {
-    100% { transform: rotate(360deg); }
+/* ================= BOXES ================= */
+
+.boxes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px;
+    flex-wrap: wrap;
+}
+
+.box {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 250px;
+    transition: 0.3s;
+}
+
+.box:hover {
+    transform: scale(1.05);
 }
 
 /* ================= FOOTER ================= */
 
-.footer {
-    text-align: center;
-    padding: 20px;
-    background: rgba(255,255,255,0.05);
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 60px;
+    background: #111827;
+    color: white;
+    flex-wrap: wrap;
 }
 
-/* ================= FULL LIGHT MODE ================= */
-
-.light-mode {
-    background: #f1f5f9;
-    color: #111827;
+.footer-right a {
+    margin-left: 15px;
+    color: white;
+    transition: 0.3s;
 }
 
-.light-mode .navbar {
-    background: rgba(255,255,255,0.8);
+.footer-right a:hover {
+    color: #8b5cf6;
 }
 
-.light-mode .nav-links a {
-    color: #111827;
-}
+/* ================= ANIMATION ================= */
 
-.light-mode .hero-overlay {
-    background: rgba(255,255,255,0.6);
-}
-
-.light-mode .search-container input {
-    background: white;
-    color: black;
-}
-
-.light-mode .feature,
-.light-mode .paper-card {
-    background: rgba(255,255,255,0.8);
-    color: #111827;
-}
-
-.light-mode .footer {
-    background: rgba(255,255,255,0.8);
-    color: #111827;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

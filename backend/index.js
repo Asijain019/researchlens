@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
@@ -60,6 +61,48 @@ const url = `http://export.arxiv.org/api/query?search_query=all:${query}&start=0
     res.status(500).send("Error fetching research papers");
   }
 });
+
+app.get("/semantic-search", async (req, res) => {
+  const query = req.query.q;
+  const limit = req.query.limit || 5;
+
+  if (!query) {
+    return res.status(400).send("Query is required");
+  }
+
+  try {
+    const response = await axios.get(
+      "https://api.semanticscholar.org/graph/v1/paper/search",
+      {
+        params: {
+          query: query,
+          limit: limit,
+          fields: "title,authors,year,abstract,citationCount,influentialCitationCount,url"
+        },
+        headers: {
+          "x-api-key": process.env.SEMANTIC_API_KEY
+        }
+      }
+    );
+
+    const papers = response.data.data.map(paper => ({
+      title: paper.title,
+      authors: paper.authors.map(a => a.name),
+      year: paper.year,
+      citationCount: paper.citationCount,
+      influentialCitationCount: paper.influentialCitationCount,
+      abstract: paper.abstract || "Abstract not available.",
+      link: paper.url
+    }));
+
+    res.json(papers);
+
+  } catch (error) {
+    console.error(error.response?.data || error.message);
+    res.status(500).send("Error fetching Semantic Scholar papers");
+  }
+});
+
 
 
 // Start server

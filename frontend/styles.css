@@ -2,35 +2,29 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background: #f4f6fb;
+    background: #f5f7ff;
     color: #111;
     transition: 0.3s;
-}
-
-body.dark {
-    background: #0f172a;
-    color: white;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 50px;
+    padding: 20px 60px;
     background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-body.dark header {
-    background: #1e293b;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
 }
 
 .logo {
-    font-weight: bold;
-    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 20px;
 }
 
 nav {
@@ -39,9 +33,8 @@ nav {
 }
 
 .nav-btn {
-    background: none;
     border: none;
-    font-size: 16px;
+    background: none;
     cursor: pointer;
     padding: 8px 14px;
     border-radius: 8px;
@@ -53,56 +46,39 @@ nav {
     color: white;
 }
 
-.nav-btn.active {
-    background: #6366f1;
-    color: white;
-}
-
-.section {
-    display: none;
-    padding: 40px 60px;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.section.active {
-    display: block;
-}
-
 .hero {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
     text-align: center;
-    margin-bottom: 40px;
-}
-
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
+    padding: 100px 20px;
 }
 
 .hero span {
-    color: #6366f1;
+    color: #ffe600;
 }
 
 .search-box {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
 .search-box input {
+    padding: 14px;
     width: 400px;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
+    border-radius: 12px;
+    border: none;
 }
 
 .search-box button {
-    padding: 12px 20px;
-    border-radius: 10px;
+    padding: 14px 20px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    color: white;
+    background: white;
+    color: #6366f1;
+    font-weight: 600;
     transition: 0.3s;
 }
 
@@ -110,55 +86,88 @@ nav {
     transform: scale(1.05);
 }
 
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 250px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card i {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+    color: #6366f1;
+}
+
 .results-grid {
+    padding: 40px 60px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
     gap: 20px;
-    margin-top: 30px;
 }
 
 .paper-card {
     background: white;
     padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     transition: 0.3s;
 }
 
-body.dark .paper-card {
-    background: #1e293b;
-}
-
 .paper-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
 }
 
-.paper-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+.quote-section {
+    text-align: center;
+    padding: 80px 20px;
+    background: #eef2ff;
 }
 
-.paper-card p {
-    font-size: 14px;
-    margin-bottom: 10px;
+.boxes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px;
 }
 
-.paper-card button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: #6366f1;
+.box {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
     color: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 250px;
+    transition: 0.3s;
+}
+
+.box:hover {
+    transform: scale(1.05);
 }
 
 footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 60px;
+    background: #111827;
+    color: white;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0 }
-    to { opacity: 1 }
+.footer-right a {
+    margin-left: 15px;
+    color: white;
 }
